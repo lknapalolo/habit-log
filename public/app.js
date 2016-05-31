@@ -7,8 +7,9 @@
     "ngResource"
   ])
   .config(Router)
-  .factory("Meditation", MeditationFactory)
   .controller("Index", IndexCtrl)
+  .factory("Meditation", MeditationFactory)
+
 
 Router.$inject = ["$stateProvider", "$locationProvider"];
 function Router($stateProvider, $locationProvider){
@@ -24,7 +25,7 @@ function Router($stateProvider, $locationProvider){
 
 MeditationFactory.$inject = ["$resource"];
 function MeditationFactory($resource){
-  Meditations = $resource("/api/meditations", {}, {
+  var Meditations = $resource("/api/meditations", {}, {
     update: {method: "PUT"}
   });
   return Meditations;
@@ -33,7 +34,7 @@ function MeditationFactory($resource){
 IndexCtrl.$inject = ["Meditation", "$stateParams", "$state"];
 function IndexCtrl(Meditation, $stateParams, state){
   var vm = this;
-  vm.mediations = Meditation.query();
+  vm.meditations = Meditation.query();
 }
 
 })();
