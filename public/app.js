@@ -7,6 +7,7 @@
     "ngResource"
   ])
   .config(Router)
+  .factory("Meditation", MeditationFactory)
 
 Router.$inject = ["$stateProvider", "$locationProvider"];
 function Router($stateProvider, $locationProvider){
@@ -16,6 +17,14 @@ function Router($stateProvider, $locationProvider){
     url: "/meditation",
     templateUrl: "/assets/html/meditation-index.html"
   })
+}
+
+MeditationFactory.$inject = ["$resource"];
+function MeditationFactory($resource){
+  Meditations = $resource("/api/meditations", {}, {
+    update: {method: "PUT"}
+  });
+  return Meditations;
 }
 
 
