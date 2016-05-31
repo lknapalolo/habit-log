@@ -16,6 +16,12 @@ app.engine(".hbs", hbs({
   defaultLayout:  "main"
 }));
 
+app.get("/api/meditations", function(req, res){
+  Meditation.find().then(function(meditations_db){
+    res.json(meditations_db)
+  })
+})
+
 app.get("/*", function(req, res){
   res.render("main", {layout:false})
 });
