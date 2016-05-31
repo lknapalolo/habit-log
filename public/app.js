@@ -8,6 +8,7 @@
   ])
   .config(Router)
   .factory("Meditation", MeditationFactory)
+  .controller("Index", IndexCtrl)
 
 Router.$inject = ["$stateProvider", "$locationProvider"];
 function Router($stateProvider, $locationProvider){
@@ -15,7 +16,9 @@ function Router($stateProvider, $locationProvider){
   $stateProvider
   .state("index",{
     url: "/meditation",
-    templateUrl: "/assets/html/meditation-index.html"
+    templateUrl: "/assets/html/meditation-index.html",
+    controller: "Index",
+    controllerAs: "IndexVm"
   })
 }
 
@@ -27,5 +30,10 @@ function MeditationFactory($resource){
   return Meditations;
 }
 
+IndexCtrl.$inject = ["Meditation", "$stateParams", "$state"];
+function IndexCtrl(Meditation, $stateParams, state){
+  var vm = this;
+  vm.mediations = Meditation.query();
+}
 
 })();
