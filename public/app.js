@@ -8,8 +8,9 @@
   ])
   .config(Router)
 
-Router.$inject = ["$stateProvider"];
-function Router($stateProvider){
+Router.$inject = ["$stateProvider", "$locationProvider"];
+function Router($stateProvider, $locationProvider){
+  $locationProvider.html5Mode(true);
   $stateProvider
   .state("index",{
     url: "/meditation",
