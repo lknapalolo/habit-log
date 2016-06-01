@@ -4,11 +4,39 @@
   angular
   .module("habitLog", [
     "ui.router",
-    "ngResource"
+    "ngResource",
+    "d3"
   ])
   .config(Router)
   .controller("Index", IndexCtrl)
   .factory("Meditation", MeditationFactory)
+  .directive("d3circles", ['d3Service', function(d3Service){
+    return{
+      restrict: 'EA',
+      scope: {},
+      link: function(scope, element, attrs) {
+        d3Service.d3().then(function(d3){
+          var data = [4, 10, 15, 16, 23, 42];
+          d3.select('body')
+          .selectAll('main')
+          .data(data)
+          .enter()
+          .append('div')
+          .style("width", function(d){
+            return d * 10 + "px"
+          })
+          .style({
+            "background-color":"pink",
+            "font-family":"Helvetica",
+            "font-size":"12pt"
+          })
+          .text(function(d){return d })
+
+          })
+        }
+    };
+  }]);
+
 
 Router.$inject = ["$stateProvider", "$locationProvider",  "$urlRouterProvider"];
 function Router($stateProvider, $locationProvider, $urlRouterProvider){
