@@ -20,7 +20,7 @@
         d3Service.d3().then(function(d3){
 
 
-        var diameter = 500
+        var diameter = 600
 
         var bubble = d3.layout.pack()
         .sort(null)
