@@ -19,8 +19,14 @@ app.engine(".hbs", hbs({
 }));
 
 app.get("/api/meditations", function(req, res){
-  Meditation.find().then(function(meditations_db){
-    res.json(meditations_db)
+  Meditation.find().then(function(meditations){
+    res.json(meditations)
+  })
+})
+
+app.get("/api/meditations/:_id", function(req, res){
+  Meditation.findOne(req.params).then(function(meditation){
+    res.json(meditation)
   })
 })
 
