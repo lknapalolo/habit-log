@@ -1,0 +1,37 @@
+body{
+  font-family: "Shadows Into Light";
+  background: seashell;
+}
+table{
+  margin: 1em auto;
+}
+td, th{
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: center;
+}
+th{
+  background-color: black;
+  color:seashell;
+}
+a, a:visited{
+  color:black;
+  text-decoration: none;
+  font-size:2em;
+  padding:0.2em;
+}
+a:hover{
+  text-shadow: 1px 1px #fff;
+}
+span.divider{
+  font-size:2.5em;
+}
+button, input[type="number"], input[type="text"]{
+  font-size: 1.5em;
+  font-family: "Shadows Into Light";
+  background-color: seashell;
+  border: solid transparent;
+}
+button:focus, input:focus{
+  outline:0;
+}

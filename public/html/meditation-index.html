@@ -1,6 +1,5 @@
-<h1>Meditation Index</h1>
 <button data-ng-click="isFormOpen = !isFormOpen">
-  Add instance
+  Add meditation
 </button>
 <div data-ng-show="isFormOpen">
   <input type="text" placeholder="Date" data-ng-model="IndexVm.newMeditation.date" />
@@ -8,17 +7,31 @@
   <button data-ng-click="IndexVm.create()">+</button>
 </div>
 
-
-<div data-ng-repeat="meditation in IndexVm.meditations">
-  <div data-ng-click="isEditDate = !isEditDate">
-    <p data-ng-hide="isEditDate">{{meditation.date}}</p>
-    <p data-ng-show="isEditDate"><input type="text" data-ng-model="meditation.date"/><button data-ng-click="IndexVm.update(meditation, $index)">Edit</button></p>
-  </div>
-  <div data-ng-click="editTime = !editTime">
-    <p data-ng-hide="editTime">{{meditation.minutes}} minutes</p>
-    <p><input data-ng-show="editTime" type="number" /></p>
-  </div>
-  <span data-ng-click="IndexVm.destroy(meditation, $index)">X</span>
-</div>
-
-<d3circles></d3circles>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Date
+      </th>
+      <th>
+        Time (in minutes)
+      </th>
+      <th>
+        Delete
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="meditation in IndexVm.meditations">
+      <td>
+        {{meditation.date}}
+      </td>
+      <td>
+        {{meditation.minutes}}
+      </td>
+      <td>
+        <a data-ng-click="IndexVm.destroy(meditation, $index)">x</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

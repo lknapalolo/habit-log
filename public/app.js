@@ -14,8 +14,11 @@
     return{
       restrict: 'EA',
       scope: {},
+      replace: true,
       link: function(scope, element, attrs) {
+
         d3Service.d3().then(function(d3){
+
 
         var diameter = 500
 
@@ -24,7 +27,7 @@
         .size([diameter, diameter])
         .padding(1.5);
 
-        var svg = d3.select("body")
+        var svg = d3.select(".circles")
         .append('svg')
         .attr("width", diameter)
         .attr("height", diameter)
@@ -49,12 +52,12 @@
           .attr("r", function(d){ return d.r; })
           .attr("cx", function(d){ return d.x; })
           .attr("cy", function(d){ return d.y; })
-          .style("fill", "aliceblue")
-          .on("mouseover", function(d){
-            d3.select(this).style({"fill":"yellow"})
+          .style("fill", "#ccc")
+          .on("mouseover", function(){
+            d3.select(this).style({"fill":"#fff"})
           })
-          .on("mouseout", function(d){
-            d3.select(this).style({"fill":"aliceblue"})
+          .on("mouseout", function(){
+            d3.select(this).style({"fill":"#ccc"})
           })
 
           bubbles.append("text")
@@ -84,6 +87,10 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl: "/assets/html/meditation-index.html",
     controller: "Index",
     controllerAs: "IndexVm"
+  })
+  .state("chart", {
+    url:"/visualize",
+    templateUrl: "/assets/html/meditation-chart.html"
   });
   $urlRouterProvider.otherwise("/")
 }
@@ -105,11 +112,7 @@ function IndexCtrl(Meditation){
       vm.meditations.push(response);
     })
   }
-  vm.update = function(meditation, index){
-    Meditation.update({_id: meditation._id}, function(){
-      vm.meditations.push(index, 1)
-    })
-  }
+
   vm.destroy = function(meditation, index){
      Meditation.remove({_id: meditation._id}, function(){
        vm.meditations.splice(index, 1);
