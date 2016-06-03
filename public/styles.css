@@ -4,6 +4,10 @@ html{
 body{
   font-family: "Shadows Into Light";
   background: seashell;
+  margin-left:2em;
+}
+.circles{
+  margin:0;
 }
 table{
   margin: 1em auto;

@@ -4,7 +4,7 @@
   </button>
   <div data-ng-show="isFormOpen">
   <input type="text" placeholder="Date" data-ng-model="IndexVm.newMeditation.date" />
-  <input type="number" placeholder="Time in minutes" min="0" data-ng-model="IndexVm.newMeditation.minutes" />
+  <input type="number" placeholder="Time in minutes" min="0" max="255" data-ng-model="IndexVm.newMeditation.minutes" />
   <button data-ng-click="IndexVm.create()">+</button>
   </div>
 </div>

@@ -25,7 +25,7 @@
         var bubble = d3.layout.pack()
         .sort(null)
         .size([diameter, diameter])
-        .padding(1.5);
+        .padding(10);
 
         var svg = d3.select(".circles")
         .append('svg')
@@ -52,12 +52,12 @@
           .attr("r", function(d){ return d.r; })
           .attr("cx", function(d){ return d.x; })
           .attr("cy", function(d){ return d.y; })
-          .style("fill", "#ccc")
+          .style("fill", function(d) {return "rgb(" + d.minutes + "," + d.minutes + "," + d.minutes + ")"})
           .on("mouseover", function(){
-            d3.select(this).style({"fill":"#fff"})
+            d3.select(this).style("fill", "#ccc")
           })
           .on("mouseout", function(){
-            d3.select(this).style({"fill":"#ccc"})
+            d3.select(this).style("fill", function(d) {return "rgb(" + d.minutes + "," + d.minutes + "," + d.minutes + ")"})
           })
 
           bubbles.append("text")
@@ -66,7 +66,7 @@
           .attr("text-anchor", "middle")
           .text(function(d) {return d.date})
           .style({
-            "fill":"black",
+            "fill": "white",
             "font-family":"Helvetica Neue",
             "font-size":"10px"
           });
